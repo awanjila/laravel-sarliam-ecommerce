@@ -1,0 +1,4 @@
+.idea
+/public/frontend
+/public/backend
+/public/uploads
