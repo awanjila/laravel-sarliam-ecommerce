@@ -2,34 +2,37 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Foundation\Auth\AuthenticateUsers;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
 
 class LoginController extends Controller
 {
-    use AuthenticateUsers;
-    /**
-    *Where to redirect admins after login.
-    *
-    * @var string
-    */
-    protected $redirectTo ='/admin';
+    use AuthenticatesUsers;
 
     /**
-    *@return void
-    */
+     * Where to redirect admins after login.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/admin';
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
-    	$this->middleware('guest:admin')->expect('logout');
+        $this->middleware('guest:admin')->except('logout');
     }
 
     /**
-    *@return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-    */
-
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showLoginForm()
     {
-    	return view('admin.auth.login');
+        return view('admin.auth.login');
     }
 }
