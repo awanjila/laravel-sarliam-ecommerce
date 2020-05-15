@@ -1,5 +1,5 @@
 <?php
-App\Models\Settings;
+App\Models\Setting;
 use Illuminate\Database\Seeder;
 
 class SettingsTableSeeder extends Seeder

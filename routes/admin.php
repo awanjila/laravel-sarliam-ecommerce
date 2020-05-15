@@ -13,3 +13,12 @@ Route::group(['prefix'  =>  'admin'], function () {
 
 });
 });
+
+Route::group(['prefix' => 'brands'], function(){
+	Route::get('/', 'Admin\BrandController@index')->name('admin.brands.index');
+	Route::get('/create', 'Admin\BrandController@index')->name('admin.brands.create');
+	Route::get('/store', 'Admin\BrandController@index')->name('admin.brands.store');
+	Route::get('/{id}/edit', 'Admin\BrandController@index')->name('admin.brands.edit');
+	Route::get('/update', 'Admin\BrandController@index')->name('admin.brands.update');
+	Route::get('/{id}/delete', 'Admin\BrandController@index')->name('admin.brands.delete');
+});
