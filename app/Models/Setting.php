@@ -23,7 +23,7 @@ class Setting extends Model
     public static function get($key)
     {
     	$setting =new self();
-    	$entry =setting->where('key', $key)->first();
+    	$entry =$setting->where('key', $key)->first();
     	if (!$entry){
     		return;
     	}
@@ -42,7 +42,7 @@ public static function set($key, $value = null)
 	$entry = $setting-> where('key', $key)->firstorFail();
 	$entry->value =$value;
 	$entry->saveOrFail();
-	Config::set('key' $value);
+	Config::set('key', $value);
 	if (Config::get($key)==$value) {
 		return true;
 	}

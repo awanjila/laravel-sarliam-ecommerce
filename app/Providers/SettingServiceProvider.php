@@ -20,17 +20,20 @@ class SettingServiceProvider extends ServiceProvider
     $loader->alias('Setting', Setting::class);
 }
 
-    /**
- * Register services.
+   /**
+ * Bootstrap services.
  *
  * @return void
  */
-public function register()
+public function boot()
 {
-    $this->app->bind('settings', function ($app) {
-        return new Setting();
-    });
-    $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-    $loader->alias('Setting', Setting::class);
+    // only use the Settings package if the Settings table is present in the database
+    if (!\App::runningInConsole() && count(Schema::getColumnListing('settings'))) {
+        $settings = Setting::all();
+        foreach ($settings as $key => $setting)
+        {
+            Config::set('settings.'.$setting->key, $setting->value);
+        }
+    }
 }
 }
