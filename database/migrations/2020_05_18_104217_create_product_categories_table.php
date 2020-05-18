@@ -15,9 +15,9 @@ class CreateProductCategoriesTable extends Migration
     {
         Schema::create('product_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('category_id')->unsigned()->index();
+            $table->unsignedBiginteger('category_id')->index();
             $table->foreign('category_id')->references('id')->on('categories');
-            $table->integer('product_id')->unsigned()->index();
+            $table->unsignedBiginteger('product_id')->index();
             $table->foreign('product_id')->references('id')->on('products');
         });
     }
