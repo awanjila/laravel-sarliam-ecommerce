@@ -14,9 +14,7 @@ require 'admin.php';
 |
 */
 
-Route::get('/', function () {
-	return view('welcome');
-});
+Route::view('/', 'site.pages.homepage');
 
 
 Auth::routes();
